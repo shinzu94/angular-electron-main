@@ -13,22 +13,22 @@
           </a>
         </div>
       </ng-container>
-      <ng-container ngbNavItem="top">
+      <ng-container ngbNavItem="top" *ngIf="canShow('/home')">
         <a ngbNavLink routerLink="/home" class="navlink">{{ 'NAV.HOME' | translate }}</a>
 
       </ng-container>
-      <ng-container ngbNavItem="middle">
+      <ng-container ngbNavItem="middle" *ngIf="canShow('/detail')">
         <a ngbNavLink routerLink="/detail" class="navlink">{{ 'NAV.DETAIL' | translate }}</a>
       </ng-container>
-      <ng-container ngbNavItem="bottom">
+      <ng-container ngbNavItem="bottom" *ngIf="canShow('/login')">
         <a ngbNavLink routerLink="/login"  class="navlink">{{ 'NAV.LOGIN' | translate }}</a>
       </ng-container>
-      <ng-container ngbNavItem="bottom">
-        <a (click)="close()" class="navlink">{{ 'NAV.CLOSE' | translate }}</a>
+      <ng-container ngbNavItem="bottom" *ngIf="isElectron">
+        <a (click)="close()" class="navlink close">{{ 'NAV.CLOSE' | translate }}</a>
       </ng-container>
     </div>
 
-    <div class="col-sm-10">
+    <div class="col-sm-10 body">
       <router-outlet></router-outlet>
     </div>
   </div>

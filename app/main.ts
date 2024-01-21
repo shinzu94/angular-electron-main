@@ -16,7 +16,10 @@ function createWindow(): BrowserWindow {
     y: 0,
     width: size.width,
     height: size.height,
+    frame: false,
     fullscreenable: true,
+    titleBarOverlay: true,
+    titleBarStyle: "hidden",
     fullscreen:true,
     webPreferences: {
       nodeIntegration: true,

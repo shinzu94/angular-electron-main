@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {Component, NgModule} from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 import {AuthService} from '../shared/services/auth.service';
 
@@ -7,6 +7,7 @@ import {AuthService} from '../shared/services/auth.service';
   selector: 'app-login',
   standalone: true,
     imports: [
+        // Router,
         RouterLink,
         TranslateModule
     ],
@@ -14,10 +15,32 @@ import {AuthService} from '../shared/services/auth.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private authService: AuthService) {
+  public username: string = "";
+  public password: string = "";
+  public loginDate = {
+    username: "",
+    password: ""
+  }
+  constructor(private authService: AuthService
+              , private router: Router
+  ) {
+    console.log(authService)
   }
 
+  login(data:any) {
+    console.log(data);
+  }
   userLogin(){
-    this.authService.userLogin("");
+    console.log(this.loginDate);
+    console.log(this.username);
+    console.log(this.password);
+    this.authService.userLogin(this.loginDate);
+
+    this.router.navigate(["/home"])
+  }
+
+  trans(event: InputEvent|any): string {
+    console.log(event)
+    return event?.target?.value;
   }
 }

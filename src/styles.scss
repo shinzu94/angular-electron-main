@@ -9,15 +9,24 @@ html, body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: mistyrose!important;
 }
+.body {
+  background-image: linear-gradient(to right, mistyrose, white)!important;
+}
 .lang {
   .flaglink {
     &:hover {
       cursor: pointer;
+      .pl, .eng {
+        filter: drop-shadow(5px 5px 15px black);
+      }
     }
   }
   .pl, .eng {
+    transition: 0.7s;
     max-width: 30px;
     height: auto;
+    &:hover {
+    }
   }
 }
 .nav.nav-pills {
@@ -38,6 +47,7 @@ html, body {
       background: mistyrose;
       color: $red !important;
       transition: all 0.75s ease 0s;
+      cursor: pointer;
     }
     &.active {
       background-color: darkorange !important;
@@ -57,10 +67,6 @@ html, body {
     align-items: center;
     align-content: center;
     justify-content: center;
-
-    background-color: white;
-    -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-    background-size: cover; /* version standardisée */
 
     .title {
       color: $red;

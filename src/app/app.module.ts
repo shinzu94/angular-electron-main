@@ -17,6 +17,8 @@ import { DetailModule } from './detail/detail.module';
 import { AppComponent } from './app.component';
 import {LoginModule} from './login/login.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from './shared/services/auth.service';
+import {AuthRouteGuard} from './shared/guards/auth.route.guard';
 
 // AoT requires an exported function for factories
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,7 +48,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
     }),
     NgbModule
   ],
-  providers: [],
+  providers: [AuthService, AuthRouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

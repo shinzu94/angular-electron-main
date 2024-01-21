@@ -6,12 +6,20 @@
   <form>
     <div class="mb-3">
       <label for="email" class="form-label">{{ 'GENERAL.EMAIL' | translate }}</label>
-      <input type="email" class="form-control" id="email">
+      <Input type="email"
+             class="form-control"
+             id="email"
+             name="username"
+             (input)="loginDate.username=trans($event)">
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">{{ 'GENERAL.PASSWORD' | translate }}</label>
-      <input type="password" class="form-control" id="password">
+      <input type="password"
+             class="form-control"
+             id="password"
+             name="password"
+             (input)="loginDate.password=trans($event)">
     </div>
   </form>
-  <button type="submit" class="btn btn-primary">{{ 'GENERAL.SEND' | translate }}</button>
+  <button type="submit" class="btn btn-primary" (click)="userLogin()">{{ 'GENERAL.SEND' | translate }}</button>
 </div>

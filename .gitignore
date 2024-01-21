@@ -49,5 +49,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-/.vscode/
+/BodyMetric-darwin-arm64/
+/BodyMetric-darwin-x64/
+/BodyMetric-mas-arm64/
+/BodyMetric-mas-x64/
 /.github/
+/.vscode/

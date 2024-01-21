@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, Inject, inject, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from "../shared/services/auth.service";
 
@@ -9,21 +9,23 @@ import { AuthService } from "../shared/services/auth.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService :AuthService) {
-    let test = inject(AuthService)
-}
+  constructor(
+    @Inject(AuthService)
+    private authService :AuthService
+  ) {
+  }
   user = {
     username: "",
     id: ""
   }
   ngOnInit(): void {
     console.log('HomeComponent INIT');
-    // this.authService.userInfo.subscribe(value => {
-    //   if(value) {
-    //     this.user.id = value.userid
-    //     this.user.username = value.username
-    //   }
-    // })
+    this.authService.userInfo.subscribe(value => {
+      if(value) {
+        this.user.id = value.userid
+        this.user.username = value.username
+      }
+    })
   }
 
 }
