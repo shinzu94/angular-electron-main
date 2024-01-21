@@ -1,0 +1,28 @@
+{
+  "PAGES": {
+      "HOME": {
+          "TITLE": "Aplikacja działa",
+          "GO_TO_DETAIL": "Idź do szczegółów",
+          "LOGIN": "Zaloguj się"
+      },
+      "DETAIL": {
+        "TITLE": "Strona szczeglów!",
+        "BACK_TO_HOME": "Wróć do strony głównej"
+      },
+      "LOGIN": {
+        "TITLE": "Logowanie",
+        "BACK_TO_HOME": "Wróć do strony głównej"
+      }
+  },
+  "NAV": {
+    "HOME": "Strona Główna",
+    "DETAIL": "Szczeguły",
+    "LOGIN": "Logowanie",
+    "CLOSE": "Zamknij"
+  },
+  "GENERAL": {
+    "EMAIL": "Email",
+    "PASSWORD": "Hasło",
+    "SEND": "Wyślij"
+  }
+}

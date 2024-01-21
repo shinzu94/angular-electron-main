@@ -1,0 +1,35 @@
+<div class="d-flex">
+  <div class="row main-row">
+    <div ngbNav #nav="ngbNav"
+         class="col-sm-2 nav-pills flex-column"
+         orientation="vertical">
+      <ng-container ngbNavItem="top" class="lang">
+        <div class="lang">
+          <a (click)="changePl()" class="navlink flaglink" >
+            <img src="/assets/pl.png" class="pl">
+          </a>
+          <a (click)="changeEn()" class="navlink flaglink">
+            <img src="/assets/eng.svg" class="eng">
+          </a>
+        </div>
+      </ng-container>
+      <ng-container ngbNavItem="top">
+        <a ngbNavLink routerLink="/home" class="navlink">{{ 'NAV.HOME' | translate }}</a>
+
+      </ng-container>
+      <ng-container ngbNavItem="middle">
+        <a ngbNavLink routerLink="/detail" class="navlink">{{ 'NAV.DETAIL' | translate }}</a>
+      </ng-container>
+      <ng-container ngbNavItem="bottom">
+        <a ngbNavLink routerLink="/login"  class="navlink">{{ 'NAV.LOGIN' | translate }}</a>
+      </ng-container>
+      <ng-container ngbNavItem="bottom">
+        <a (click)="close()" class="navlink">{{ 'NAV.CLOSE' | translate }}</a>
+      </ng-container>
+    </div>
+
+    <div class="col-sm-10">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

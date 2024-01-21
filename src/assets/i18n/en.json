@@ -1,0 +1,17 @@
+{
+  "PAGES": {
+      "HOME": {
+          "TITLE": "App works !",
+          "GO_TO_DETAIL": "Go to Detail"
+      },
+      "DETAIL": {
+        "TITLE": "Detail page !",
+        "BACK_TO_HOME": "Back to Home"
+    }
+  },
+  "NAV": {
+    "HOME": "Main",
+    "DETAIL": "Detail",
+    "LOGIN": "Login"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "body-metric",
+  "description": "Angular Electron sample",
+  "author": {
+    "name": "Oskar Sęk",
+    "email": "oskar.sek94@gmail.com"
+  },
+  "version": "1.0.0",
+  "main": "main.js",
+  "private": true,
+  "dependencies": {
+  }
+}
