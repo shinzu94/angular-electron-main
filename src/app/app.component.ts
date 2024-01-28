@@ -3,7 +3,6 @@ import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { APP_CONFIG } from '../environments/environment';
 import {AuthRouteGuard} from './shared/guards/auth.route.guard';
-import {ActivatedRouteSnapshot} from '@angular/router';
 
 @Component({
   selector: 'app-root',

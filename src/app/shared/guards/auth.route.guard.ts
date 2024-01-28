@@ -16,7 +16,7 @@ export class AuthRouteGuard implements CanActivate{
     if (state.url == "/")
       return true;
     if (userData && userData.userid) {
-      if (state.url.indexOf("login") > -1) {
+      if (state.url.indexOf("login") > -1 && state.url.indexOf("register") > -1 ) {
         this.route.navigate(["/home"]);
         return false;
       }

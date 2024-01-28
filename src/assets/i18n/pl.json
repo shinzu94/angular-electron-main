@@ -11,7 +11,8 @@
       },
       "LOGIN": {
         "TITLE": "Logowanie",
-        "BACK_TO_HOME": "Wróć do strony głównej"
+        "BACK_TO_HOME": "Wróć do strony głównej",
+        "CREATE_ACCOUNT": 'Załóż konto',
       }
   },
   "NAV": {
