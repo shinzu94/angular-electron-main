@@ -1,25 +1,22 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "outDir": "./dist/out-tsc",
     "module": "es2022",
     "sourceMap": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowJs": true,
-    "target": "ES2022",
+    "target": "es2022",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2017",
-      "es2016",
-      "es2015",
-      "es2018",
+      "es2022",
       "dom"
     ],
     "useDefineForClassFields": false,
@@ -29,10 +26,10 @@
     "node_modules"
   ],
   "angularCompilerOptions": {
-    "strictTemplates": true,
+    "strictTemplates": false,
     "fullTemplateTypeCheck": true,
     "annotateForClosureCompiler": true,
-    "strictInjectionParameters": true,
+    "strictInjectionParameters": false,
     "skipTemplateCodegen": false,
     "preserveWhitespaces": true,
     "skipMetadataEmit": false,

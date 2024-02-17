@@ -1,0 +1,124 @@
+<div class="container">
+  <h1 class="title">
+    {{ 'PAGES.REGISTER.TITLE' | translate }}
+  </h1>
+  <p *ngIf="failOfRegistration" class="alert alert-danger">
+    {{ 'PAGES.REGISTER.FORM.ERROR.REGISTRATION_ID_FAILED' | translate }}
+  </p>
+
+  <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+    <div class="mb-3">
+      <label for="email" class="form-label">
+        {{ 'PAGES.REGISTER.FORM.EMAIL' | translate }}
+      </label>
+      <input type="text" class="form-control" id="email" formControlName="email">
+      <div *ngIf="registerForm?.get('email')?.touched && registerForm?.get('email')?.errors">
+        <p *ngIf="registerForm?.get('email')?.errors?.required" class="alert alert-danger">
+          {{ 'GENERAL.FORM.ERROR.REQUIRED' | translate }}
+        </p>
+        <p *ngIf="registerForm?.get('email')?.errors?.email" class="alert alert-danger">
+          {{ 'GENERAL.FORM.ERROR.EMAIL_PATTERN' | translate }}
+        </p>
+        <p *ngIf="registerForm?.get('email')?.errors?.emailIsNotUnique" class="alert alert-danger">
+          {{ 'PAGES.REGISTER.FORM.ERROR.EMAIL_IS_NOT_UNIQUE' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">
+        {{ 'PAGES.REGISTER.FORM.PASSWORD' | translate }}
+      </label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div *ngIf="registerForm?.get('password')?.touched && registerForm?.get('password')?.errors">
+        <p *ngIf="registerForm?.get('password')?.errors?.required" class="alert alert-danger">
+          {{ 'GENERAL.FORM.ERROR.REQUIRED' | translate }}
+        </p>
+        <p *ngIf="registerForm?.get('password')?.errors?.minlength" class="alert alert-danger">
+          {{ 'GENERAL.FORM.ERROR.PASSWORD_LENGTH' | translate:{number: 8} }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">
+        {{ 'PAGES.REGISTER.FORM.REPEAT_PASSWORD' | translate }}
+      </label>
+      <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+      <div *ngIf="registerForm?.get('confirmPassword')?.touched && registerForm?.get('confirmPassword')?.errors ">
+        <p *ngIf="registerForm?.get('confirmPassword')?.errors?.required" class="alert alert-danger">
+          {{ 'GENERAL.FORM.ERROR.REQUIRED' | translate }}
+        </p>
+        <p *ngIf="registerForm?.get('confirmPassword')?.errors?.passwordMismatch" class="alert alert-danger">
+          {{ 'PAGES.REGISTER.FORM.ERROR.INVALID_REPEATED_PASSWORD' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="firstname" class="form-label">
+        {{ 'PAGES.REGISTER.FORM.FIRSTNAME' | translate }}
+      </label>
+      <input type="text" class="form-control" id="firstname" formControlName="firstname">
+      <p *ngIf="registerForm?.get('firstname')?.touched && registerForm?.get('firstname')?.errors?.required" class="alert alert-danger">
+        {{ 'GENERAL.FORM.ERROR.REQUIRED' | translate }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <label for="lastname" class="form-label">
+        {{ 'PAGES.REGISTER.FORM.LASTNAME' | translate }}
+      </label>
+      <input type="text" class="form-control" id="lastname" formControlName="lastname">
+      <p *ngIf="registerForm?.get('lastname')?.touched && registerForm?.get('lastname')?.errors?.required" class="alert alert-danger">
+        {{ 'GENERAL.FORM.ERROR.REQUIRED' | translate }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <label for="username" class="form-label">
+        {{ 'PAGES.REGISTER.FORM.USERNAME' | translate }}
+      </label>
+      <input type="text" class="form-control" id="username" formControlName="username">
+      <p *ngIf="registerForm?.get('username')?.touched && registerForm?.get('username')?.errors?.required" class="alert alert-danger">
+        {{ 'GENERAL.FORM.ERROR.REQUIRED' | translate }}
+      </p>
+    </div>
+
+
+
+    <div class="mb-3">
+      <label for="birthDate" class="form-label">
+        {{ 'PAGES.REGISTER.FORM.BIRTHDAY' | translate }}
+      </label>
+      <input type="date" class="form-control" id="birthDate" formControlName="birthDate">
+      <p *ngIf="registerForm?.get('birthDate')?.touched && registerForm?.get('birthday')?.errors?.required" class="alert alert-danger">
+        {{ 'GENERAL.FORM.ERROR.REQUIRED' | translate }}
+      </p>
+      <p *ngIf="registerForm?.get('birthDate')?.touched && registerForm?.get('birthDate')?.errors?.dateShouldBeInThePast" class="alert alert-danger">
+        {{ 'GENERAL.FORM.ERROR.DATE_SHOULD_BE_IN_THE_PAST' | translate }}
+      </p>
+      <p *ngIf="registerForm?.get('birthDate')?.touched && registerForm?.get('birthDate')?.errors?.personIsToOld" class="alert alert-danger">
+        {{ 'PAGES.REGISTER.FORM.ERROR.PERSON_IS_TO_OLD' | translate }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <label for="gender" class="form-label">
+        {{ 'PAGES.REGISTER.FORM.GENDER' | translate }}
+      </label>
+      <select class="form-control" id="gender" formControlName="gender">
+        <option [value]="type" *ngFor="let type of genderOptions">
+          {{genderLabel(type) | translate }}
+        </option>
+      </select>
+      <p *ngIf="registerForm?.get('gender')?.touched && registerForm?.get('gender')?.errors?.required" class="alert alert-danger">
+        {{ 'GENERAL.FORM.ERROR.REQUIRED' | translate }}
+      </p>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm?.invalid">
+      {{ 'GENERAL.SEND' | translate }}
+    </button>
+  </form>
+</div>

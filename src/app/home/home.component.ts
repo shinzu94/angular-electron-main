@@ -1,6 +1,10 @@
 import {Component, Inject, inject, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from "../shared/services/auth.service";
+import {ApiService} from '../http/api.service';
+import {UserModel} from '../model/user.model';
+import {Gender, Gender2LabelMapping} from '../register/gender.model';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+import {translate} from '@angular/localize/tools';
 
 @Component({
   selector: 'app-home',
@@ -11,21 +15,24 @@ export class HomeComponent implements OnInit {
 
   constructor(
     @Inject(AuthService)
-    private authService :AuthService
+    private authService :AuthService,
+    private api: ApiService
   ) {
   }
-  user = {
-    username: "",
-    id: ""
-  }
+  user?: UserModel;
+  loaded = false;
+  mode: ProgressSpinnerMode = 'indeterminate';
   ngOnInit(): void {
     console.log('HomeComponent INIT');
-    this.authService.userInfo.subscribe(value => {
-      if(value) {
-        this.user.id = value.userid
-        this.user.username = value.username
-      }
-    })
+    this.api.getMyData().subscribe(resp => {
+      this.user = resp;
+      this.loaded = true;
+    });
   }
 
+  genderLabel(label: Gender): string {
+    return Gender2LabelMapping[label];
+  }
+
+  protected readonly translate = translate;
 }

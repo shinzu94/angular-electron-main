@@ -38,11 +38,11 @@ export class ElectronService {
       });
 
       // Notes :
-      // * A NodeJS's dependency imported with 'window.require' MUST BE present in `dependencies` of both `app/package.json`
-      // and `package.json (root folder)` in order to make it work here in Electron's Renderer process (src folder)
+      // * A NodeJS's dependency imported with 'window.require' MUST BE present in `dependencies` of both `app/model.json`
+      // and `model.json (root folder)` in order to make it work here in Electron's Renderer process (src folder)
       // because it will loaded at runtime by Electron.
       // * A NodeJS's dependency imported with TS module import (ex: import { Dropbox } from 'dropbox') CAN only be present
-      // in `dependencies` of `package.json (root folder)` because it is loaded during build phase and does not need to be
+      // in `dependencies` of `model.json (root folder)` because it is loaded during build phase and does not need to be
       // in the final bundle. Reminder : only if not used in Electron's Main process (app folder)
 
       // If you want to use a NodeJS 3rd party deps in Renderer process,

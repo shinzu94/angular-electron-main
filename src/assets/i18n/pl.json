@@ -1,29 +1,96 @@
 {
   "PAGES": {
       "HOME": {
-          "TITLE": "Aplikacja działa",
-          "GO_TO_DETAIL": "Idź do szczegółów",
-          "LOGIN": "Zaloguj się"
-      },
-      "DETAIL": {
-        "TITLE": "Strona szczeglów!",
-        "BACK_TO_HOME": "Wróć do strony głównej"
+        "TITLE": "Profil",
+        "FIRSTNAME": "Imię",
+        "LASTNAME": "Nazwisko",
+        "USERNAME": "Nazwa użykownika",
+        "EMAIL": "Email",
+        "BIRTHDAY": "Data Urodzin",
+        "GENDER": "Płeć"
       },
       "LOGIN": {
         "TITLE": "Logowanie",
-        "BACK_TO_HOME": "Wróć do strony głównej",
-        "CREATE_ACCOUNT": 'Załóż konto',
+        "CREATE_ACCOUNT": "Załóż konto",
+        "SEND": "Zaloguj się"
+      },
+      "REGISTER": {
+        "TITLE": "Rejestracja",
+        "CREATE_ACCOUNT": "Załóż konto",
+        "FORM": {
+          "EMAIL": "Email",
+          "PASSWORD": "Hasło",
+          "REPEAT_PASSWORD": "Powtóż hasło",
+          "SEND": "Zarejestruj",
+          "FIRSTNAME": "Imię",
+          "LASTNAME": "Nazwisko",
+          "USERNAME": "Nazwa użytkownika",
+          "BIRTHDAY": "Data Urodzin",
+          "GENDER": "Płeć",
+          "ERROR": {
+            "INVALID_REPEATED_PASSWORD": "Hasła się niezgadzają",
+            "EMAIL_IS_NOT_UNIQUE": "Email jest zajęty",
+            "REGISTRATION_ID_FAILED": "Rejestracja się nie powiodła",
+            "PERSON_IS_TO_OLD": "Data wykracza za daleko w przeszłość"
+          }
+        }
+      },
+      "BODYDATA": {
+        "TITLE": "Pomiary",
+        "METRICS": "Metryki",
+        "BMI": "BMI",
+        "BMI_STATUS": "Interpretacja BMI",
+        "BMI_STATUSES": {
+          "STARVATION": "Wygłodzenie",
+          "EMACIATED": "Wychudzenie",
+          "UNDERWEIGHT": "Niedowaga",
+          "NORMAL": "Pożądana masa ciała",
+          "OVERWEIGHT": "Nadwaga",
+          "OBESITY1":"Otyłość II stopnia",
+          "OBESITY2": "Otyłość I stopnia",
+          "OBESITY3": "Otyłość IIII stopnia"
+        },
+        "PPM_MIFFLIN": "Podtsawowa przemiana materii",
+        "FORM": {
+          "HEIGHT": "Wysokość",
+          "WEIGHT": "Waga",
+          "FAT_FREE_MASS": "Masa beztłuszcowa"
+        },
+        "TABLE": {
+          "NO": "Lp.",
+          "HEIGHT": "Wysokość",
+          "WEIGHT": "Waga",
+          "FAT_FREE_MASS": "Masa beztłuszcowa",
+          "CREATE_DATE": "Data dodania"
+        }
       }
   },
   "NAV": {
-    "HOME": "Strona Główna",
-    "DETAIL": "Szczeguły",
+    "HOME": "Profil",
+    "DETAIL": "Szczegóły",
+    "BODYDATA": "Dane",
     "LOGIN": "Logowanie",
-    "CLOSE": "Zamknij"
+    "CLOSE": "Zamknij",
+    "LOGOUT": "Wyloguj"
   },
   "GENERAL": {
     "EMAIL": "Email",
     "PASSWORD": "Hasło",
-    "SEND": "Wyślij"
+    "REPEAT_PASSWORD": "Powtóż hasło",
+    "SEND": "Wyślij",
+    "GENDER": {
+      "MALE": "Meżczyzna",
+      "FEMALE": "Kobieta"
+    },
+    "FORM": {
+      "ERROR": {
+        "REQUIRED": "Pole jest wymagane",
+        "EMAIL_PATTERN": "Niepoprawny email",
+        "PASSWORD_LENGTH": "Minimalna długość hasła to {{ number }} znaków",
+        "DATE_SHOULD_BE_IN_THE_PAST": "Data powinna być w przeszłości",
+        "MAX": "Wartość musi być mniejsza lub równa niż {{max}}",
+        "MIN": "Wartość musi być większa lub równa niż {{min}}"
+      }
+    }
   }
 }

@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
 $red: #c23b22;
+$pastelRed: #ff6961;
+$blue: #0d6efd;
+
 
 html, body {
   margin: 0;
@@ -58,7 +64,21 @@ html, body {
     }
   }
 
-/* CAN (MUST) BE REMOVED ! Sample Global style */
+  .table {
+    width: 100%;
+  }
+
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+  }
+
+  /* CAN (MUST) BE REMOVED ! Sample Global style */
 
   .container {
     height: 100%;
@@ -73,6 +93,7 @@ html, body {
       margin: 0;
       padding: 50px 20px;
     }
+
   }
 
 }
@@ -82,14 +103,88 @@ html, body {
   width: 100%;
   margin: 0!important;
 }
+
+form .alert {
+  border-width: 3px;
+  margin-top: 3px;
+}
+
+.container {
+  .btn + .btn {
+    margin-left: 10px;
+  }
+}
+
+.metrics {
+  .small-header {
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .value {
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+}
+
 $theme-colors: (
   // Using the bootstrap "purple" color variable.
-  primary: $red
+  primary: $red,
+  secondary: $blue,
+  danger: $red
 );
 $theme-colors-text: (
   primary: #ffffff
 );
+$theme-colors-bg-subtle: (
+  danger: $pastelRed
+);
+$theme-colors-border-subtle: (
+  danger: $red
+);
 
+.form-control.ng-touched {
+  &.ng-invalid {
+    border: $red 3px solid;
+  }
+  &.ng-valid{
+    border: $blue 3px solid;
+  }
+}
+
+.spinner {
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  margin-top: 100px;
+}
 
 /* Importing Bootstrap SCSS file. */
+
 @import 'bootstrap/scss/bootstrap';
+
+
+
+@include mat.core();
+
+// Define a dark theme
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: mat.define-palette(mat.$red-palette),
+    accent: mat.define-palette(mat.$amber-palette),
+
+  ),
+  // Only include `typography` and `density` in the default dark theme.
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+// Define a light theme
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: mat.define-palette(mat.$indigo-palette),
+    accent: mat.define-palette(mat.$pink-palette),
+  ),
+));
+
+// Apply the dark theme by default
+@include mat.all-component-themes($dark-theme);

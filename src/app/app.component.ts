@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
-import { APP_CONFIG } from '../environments/environment';
-import {AuthRouteGuard} from './shared/guards/auth.route.guard';
+import { AuthRouteGuard } from './shared/guards/auth.route.guard';
+import { AuthService } from './shared/services/auth.service';
+import {ApiService} from './http/api.service';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
@@ -10,27 +12,38 @@ import {AuthRouteGuard} from './shared/guards/auth.route.guard';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public appLoaded: boolean = false;
+  public mode: ProgressSpinnerMode = 'indeterminate';
+
   constructor(
     private electronService: ElectronService,
     private translate: TranslateService,
-    private guard: AuthRouteGuard
+    private guard: AuthRouteGuard,
+    private auth: AuthService,
+    private api: ApiService
   ) {
     translate.setDefaultLang('pl');
     translate.use('pl');
-    console.log('APP_CONFIG', APP_CONFIG);
 
     if (electronService.isElectron) {
-      console.log(process.env);
-      console.log('Run in electron');
-      console.log('Electron ipcRenderer', this.electronService.ipcRenderer);
-      console.log('NodeJS childProcess', this.electronService.childProcess);
-      Notification.requestPermission((result) => {
+      void Notification.requestPermission((result) => {
         console.log(result);
       });
       new Notification("test", { body: "Test" });
     } else {
       console.log('Run in browser');
     }
+
+    setInterval(() => {
+      if (this.appLoaded) {
+        return false;
+      }
+      this.api.getUp().subscribe((status) => {
+        if (status.status === "UP") {
+          this.appLoaded = true;
+        }
+      });
+    }, 500);
   }
 
   get isElectron(): boolean {
@@ -48,10 +61,15 @@ export class AppComponent {
   }
 
   public close() {
+    this.api.disableApp();
     this.electronService.close();
   }
 
   public canShow(route: string): boolean {
     return this.guard.canShow(route)
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

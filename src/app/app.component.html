@@ -3,7 +3,7 @@
     <div ngbNav #nav="ngbNav"
          class="col-sm-2 nav-pills flex-column"
          orientation="vertical">
-      <ng-container ngbNavItem="top" class="lang">
+      <ng-container ngbNavItem="top" class="lang" *ngIf="appLoaded">
         <div class="lang">
           <a (click)="changePl()" class="navlink flaglink" >
             <img src="./assets/pl.png" class="pl">
@@ -13,23 +13,33 @@
           </a>
         </div>
       </ng-container>
-      <ng-container ngbNavItem="top" *ngIf="canShow('/home')">
-        <a ngbNavLink routerLink="/home" class="navlink">{{ 'NAV.HOME' | translate }}</a>
-
+      <ng-container ngbNavItem="top" *ngIf="canShow('/home') && appLoaded">
+        <a ngbNavLink routerLink="/home" class="navlink" *ngIf="appLoaded">{{ 'NAV.HOME' | translate }}</a>
       </ng-container>
-      <ng-container ngbNavItem="middle" *ngIf="canShow('/detail')">
-        <a ngbNavLink routerLink="/detail" class="navlink">{{ 'NAV.DETAIL' | translate }}</a>
+      <ng-container ngbNavItem="top" *ngIf="canShow('/body-data') && appLoaded">
+        <a ngbNavLink routerLink="/body-data" class="navlink" >{{ 'NAV.BODYDATA' | translate }}</a>
       </ng-container>
-      <ng-container ngbNavItem="bottom" *ngIf="canShow('/login')">
-        <a ngbNavLink routerLink="/login"  class="navlink">{{ 'NAV.LOGIN' | translate }}</a>
+      <ng-container ngbNavItem="bottom" *ngIf="canShow('/login') && appLoaded">
+        <a ngbNavLink routerLink="/login" class="navlink">{{ 'NAV.LOGIN' | translate }}</a>
       </ng-container>
-      <ng-container ngbNavItem="bottom" *ngIf="isElectron">
+      <ng-container ngbNavItem="bottom" *ngIf="canShow('/logout') && appLoaded">
+        <a (click)="logout()" class="navlink close">{{ 'NAV.LOGOUT' | translate }}</a>
+      </ng-container>
+      <ng-container ngbNavItem="bottom" *ngIf="isElectron && appLoaded">
         <a (click)="close()" class="navlink close">{{ 'NAV.CLOSE' | translate }}</a>
       </ng-container>
     </div>
-
     <div class="col-sm-10 body">
-      <router-outlet></router-outlet>
+      <div class="spinner" *ngIf="!appLoaded">
+        <mat-progress-spinner
+          [mode]="mode"
+          [value]="50"
+          [diameter]="300"
+        ></mat-progress-spinner>
+      </div>
+
+      <router-outlet *ngIf="appLoaded"></router-outlet>
     </div>
   </div>
 </div>
+

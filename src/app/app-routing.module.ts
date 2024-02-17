@@ -5,6 +5,8 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {DetailComponent} from './detail/detail.component';
 import {AuthRouteGuard} from './shared/guards/auth.route.guard';
+import {RegisterComponent} from './register/register.component';
+import {BodyDataComponent} from './bodyData/body-data.component';
 
 const routes: Routes = [
   {
@@ -15,19 +17,26 @@ const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
-    // loadChildren: () => import("./home/home.module").then(_ => _.HomeModule ),
+    canActivate: [AuthRouteGuard]
+  },
+  {
+    path: "body-data",
+    component: BodyDataComponent,
     canActivate: [AuthRouteGuard]
   },
   {
     path: "login",
     component: LoginComponent,
-    // loadChildren: () => import("./login/login.module").then(_ => _.LoginModule ),
     canActivate: [AuthRouteGuard]
   },
   {
     path: "detail",
     component: DetailComponent,
-    // loadChildren: () => import("./detail/detail.module").then(_ => _.DetailModule ),
+    canActivate: [AuthRouteGuard]
+  },
+  {
+    path: "register",
+    component: RegisterComponent,
     canActivate: [AuthRouteGuard]
   },
   {

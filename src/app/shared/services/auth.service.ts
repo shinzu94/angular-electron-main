@@ -1,53 +1,84 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {JwtHelperService} from '@auth0/angular-jwt';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {AuthRequest} from '../model/auth.request';
+import {AuthResponse} from '../model/auth.response';
+import {Router} from '@angular/router';
+import {RegisterRequest} from '../model/register.request';
 
 @Injectable()
 export class AuthService {
   userInfo:BehaviorSubject<any> = new BehaviorSubject(null);
   jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
   }
-  userLogin(userPayload: any) {
-    console.log(userPayload);
-    // this.http
-    //   .post("http://localhost:8080/auth/login", userPayload)
-    //   .pipe(map((value:any) => {
-    //     localStorage.setItem("access_token", value?.access_token);
-    //     localStorage.setItem("refresh_token", value?.refresh_token);
-    //     const decryptedUser = this.jwtHelper.decodeToken(value?.access_token);
-    //
-    //     const data = {
-    //       access_token: accesstoken,
-    //       refresh_token: refreshtoken,
-    //       username: decryptedUser.username,
-    //       userid: decryptedUser.sub,
-    //       tokenExpiration: decryptedUser.exp
-    //     }
-    //
-    //     this.userInfo.next(data);
-    //   }))
-    // ;
+  userLogin(userPayload: AuthRequest) {
+    this.http
+      .post("/api/v1/auth/authenticate",
+        userPayload
+      )
+      .pipe(map((value: any) => {
+        localStorage.setItem("access_token", (value as AuthResponse)?.accessToken);
+        localStorage.setItem("refresh_token", (value as AuthResponse)?.refreshToken);
+        const decryptedUser = this.jwtHelper.decodeToken((value as AuthResponse)?.accessToken);
 
-    const accesstoken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3MDU4NzIzMDcsImV4cCI6MTczNzQwODMwNywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoib3NrYXIuc2VrOTRAZ21haWwuY29tIiwiR2l2ZW5OYW1lIjoiSm9obm55IiwiU3VybmFtZSI6IlJvY2tldCIsIkVtYWlsIjoianJvY2tldEBleGFtcGxlLmNvbSIsIlJvbGUiOlsiTWFuYWdlciIsIlByb2plY3QgQWRtaW5pc3RyYXRvciJdfQ.XwFcPeYvd9tNgxli6XEteMnCkmhrB-0iaNtcv0KNIMpKsgFARZYMnHOt2pz5jrFLMqEZfcRwb90c9dSA6qSqew";
-    const refreshtoken = accesstoken;
+        const data = {
+          access_token: (value as AuthResponse)?.accessToken,
+          refresh_token: (value as AuthResponse)?.refreshToken,
+          username: decryptedUser.username,
+          userid: decryptedUser.sub,
+          tokenExpiration: decryptedUser.exp
+        }
 
-    localStorage.setItem("access_token", accesstoken);
-    localStorage.setItem("refresh_token", refreshtoken);
+        this.userInfo.next(data);
+        this.router.navigate(["/home"])
+      }))
+      .subscribe();
+  }
 
-    const decryptedUser = this.jwtHelper.decodeToken(accesstoken);
+  registerUser(form: any, registerPayload: RegisterRequest): Observable<any> {
+    return this.http
+      .post("/api/v1/auth/register",
+        registerPayload
+      )
+      .pipe(map((value: any) => {
+        this.registerUserReaction(value);
+      }));
+  }
+
+  registerUserReaction(value: any) {
+    localStorage.setItem("access_token", (value as AuthResponse)?.accessToken);
+    localStorage.setItem("refresh_token", (value as AuthResponse)?.refreshToken);
+    const decryptedUser = this.jwtHelper.decodeToken((value as AuthResponse)?.accessToken);
 
     const data = {
-      access_token: accesstoken,
-      refresh_token: refreshtoken,
+      access_token: (value as AuthResponse)?.accessToken,
+      refresh_token: (value as AuthResponse)?.refreshToken,
       username: decryptedUser.username,
       userid: decryptedUser.sub,
       tokenExpiration: decryptedUser.exp
     }
 
     this.userInfo.next(data);
+    this.router.navigate(["/home"])
+  }
+  logout(): void {
+    localStorage.clear();
+    window.location.reload();
+    // this.authService.logout().subscribe({
+    //   next: res => {
+    //     console.log(res);
+    //     this.storageService.clean();
+    //
+    //     window.location.reload();
+    //   },
+    //   error: err => {
+    //     console.log(err);
+    //   }
+    // });
   }
 }

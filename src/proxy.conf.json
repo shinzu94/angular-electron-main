@@ -1,0 +1,20 @@
+{
+  "/api/*": {
+    "target": "http://localhost:8080/api/",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/actuator/*": {
+    "target": "http://localhost:8080/actuator/",
+    "secure": false,
+    "pathRewrite": {
+      "^/actuator": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

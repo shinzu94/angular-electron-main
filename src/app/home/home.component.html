@@ -3,10 +3,37 @@
     {{ 'PAGES.HOME.TITLE' | translate }}
   </h1>
 
-  <ul>
-    <li>username {{user.username}} </li>
-    <li>userId {{user.id}}</li>
-  </ul>
-  <a routerLink="/detail">{{ 'PAGES.HOME.GO_TO_DETAIL' | translate }}</a>
-  <a routerLink="/login">{{ 'PAGES.HOME.LOGIN' | translate }}</a>
+  <form *ngIf="loaded">
+    <div>
+      <label>{{ 'PAGES.HOME.FIRSTNAME' | translate }}</label>
+      <input type="text" value="{{user?.username}}" readonly>
+    </div>
+    <div>
+      <label>{{ 'PAGES.HOME.LASTNAME' | translate }}</label>
+      <input type="text" value="{{user?.lastname}}" readonly>
+    </div>
+    <div>
+      <label>{{ 'PAGES.HOME.USERNAME' | translate }}</label>
+      <input type="text" value="{{user?.username}}" readonly>
+    </div>
+    <div>
+      <label>{{ 'PAGES.HOME.EMAIL' | translate }}</label>
+      <input type="text" value="{{user?.email}}" readonly>
+    </div>
+    <div>
+      <label>{{ 'PAGES.HOME.GENDER' | translate }}</label>
+      <input type="text" value="{{genderLabel(user?.gender) || translate}}" readonly>
+    </div>
+    <div>
+      <label>{{ 'PAGES.HOME.BIRTHDATE' | translate }}</label>
+      <input type="date" value="{{user?.birthDate}}" readonly>
+    </div>
+  </form>
+  <div class="spinner" *ngIf="!loaded">
+    <mat-progress-spinner
+      [mode]="mode"
+      [value]="50"
+      [diameter]="300"
+    ></mat-progress-spinner>
+  </div>
 </div>

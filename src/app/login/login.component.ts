@@ -1,46 +1,31 @@
-import {Component, NgModule} from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import {Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 import {AuthService} from '../shared/services/auth.service';
+import {NgbNavLink, NgbNavLinkBase} from '@ng-bootstrap/ng-bootstrap';
+import {AuthRequest} from '../shared/model/auth.request';
+import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-    imports: [
-        // Router,
-        RouterLink,
-        TranslateModule
-    ],
+  imports: [
+    RouterLink,
+    TranslateModule,
+    NgbNavLink,
+    NgbNavLinkBase,
+    FormsModule
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  public username: string = "";
-  public password: string = "";
-  public loginDate = {
-    username: "",
-    password: ""
-  }
-  constructor(private authService: AuthService
-              , private router: Router
-  ) {
-    console.log(authService)
+  public loginDate: AuthRequest = new AuthRequest("", "");
+  constructor(private authService: AuthService) {
   }
 
-  login(data:any) {
-    console.log(data);
-  }
   userLogin(){
     console.log(this.loginDate);
-    console.log(this.username);
-    console.log(this.password);
     this.authService.userLogin(this.loginDate);
-
-    this.router.navigate(["/home"])
-  }
-
-  trans(event: InputEvent|any): string {
-    console.log(event)
-    return event?.target?.value;
   }
 }

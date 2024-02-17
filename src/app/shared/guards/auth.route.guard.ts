@@ -21,7 +21,7 @@ export class AuthRouteGuard implements CanActivate{
         return false;
       }
     } else {
-      if (state.url.indexOf("home") > -1) {
+      if (state.url.indexOf("home") > -1 || state.url.indexOf("body-data") > -1) {
         this.route.navigate(["/login"]);
         return false;
       }
@@ -37,8 +37,7 @@ export class AuthRouteGuard implements CanActivate{
         return false;
       }
     } else {
-      if (route.indexOf("home") > -1) {
-        console.log(route)
+      if (route.indexOf("home") > -1 || route.indexOf("logout") > -1 || route.indexOf("body-data") > -1) {
         return false;
       }
     }

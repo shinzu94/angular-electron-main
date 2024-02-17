@@ -6,7 +6,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -19,6 +18,9 @@ import {LoginModule} from './login/login.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AuthService} from './shared/services/auth.service';
 import {AuthRouteGuard} from './shared/guards/auth.route.guard';
+import {RegisterModule} from './register/register.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCard, MatCardContent} from '@angular/material/card';
 
 // AoT requires an exported function for factories
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -33,6 +35,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
     HomeModule,
     LoginModule,
     DetailModule,
+    RegisterModule,
     AppRoutingModule,
     CoreModule,
     BrowserModule,
@@ -46,7 +49,10 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
         deps: [HttpClient]
       }
     }),
-    NgbModule
+    NgbModule,
+    MatProgressSpinnerModule,
+    MatCard,
+    MatCardContent
   ],
   providers: [AuthService, AuthRouteGuard],
   bootstrap: [AppComponent]

@@ -3,14 +3,16 @@
     {{ 'PAGES.LOGIN.TITLE' | translate }}
   </h1>
 
-  <form>
+  <form (submit)="userLogin()" #form="ngForm">
     <div class="mb-3">
       <label for="email" class="form-label">{{ 'GENERAL.EMAIL' | translate }}</label>
-      <Input type="email"
+      <input type="email"
              class="form-control"
              id="email"
-             name="username"
-             (input)="loginDate.username=trans($event)">
+             name="email"
+             required
+             [(ngModel)]="loginDate.email"
+      >
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">{{ 'GENERAL.PASSWORD' | translate }}</label>
@@ -18,8 +20,16 @@
              class="form-control"
              id="password"
              name="password"
-             (input)="loginDate.password=trans($event)">
+             required
+             [(ngModel)]="loginDate.password"
+      >
     </div>
+
+    <a routerLink="/register" class="btn btn-secondary">
+      {{ 'PAGES.LOGIN.CREATE_ACCOUNT' | translate }}
+    </a>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+      {{ 'PAGES.LOGIN.SEND' | translate }}
+    </button>
   </form>
-  <button type="submit" class="btn btn-primary" (click)="userLogin()">{{ 'GENERAL.SEND' | translate }}</button>
 </div>
