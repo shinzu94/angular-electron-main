@@ -188,3 +188,23 @@ $light-theme: mat.define-light-theme((
 
 // Apply the dark theme by default
 @include mat.all-component-themes($dark-theme);
+@include mat.table-base($dark-theme);
+
+.mat-mdc-table.cdk-table.table.primary {
+  .mat-mdc-header-row {
+    background-color: $red!important;
+    color: white!important;
+    width: 100%!important;
+    th {
+      color: white!important;
+    }
+  }
+  .mat-mdc-row {
+    background-color: mistyrose!important;
+    color: black!important;
+    width: 100%!important;
+  }
+  tr {
+    border: $red 2px solid;
+  }
+}

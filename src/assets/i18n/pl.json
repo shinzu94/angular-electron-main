@@ -12,7 +12,8 @@
       "LOGIN": {
         "TITLE": "Logowanie",
         "CREATE_ACCOUNT": "Załóż konto",
-        "SEND": "Zaloguj się"
+        "SEND": "Zaloguj się",
+        "FAILED": "Logowanie nie powiodło się"
       },
       "REGISTER": {
         "TITLE": "Rejestracja",

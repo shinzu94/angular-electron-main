@@ -17,7 +17,7 @@ export class AuthService {
               private router: Router) {
   }
   userLogin(userPayload: AuthRequest) {
-    this.http
+    return this.http
       .post("/api/v1/auth/authenticate",
         userPayload
       )
@@ -36,8 +36,7 @@ export class AuthService {
 
         this.userInfo.next(data);
         this.router.navigate(["/home"])
-      }))
-      .subscribe();
+      }));
   }
 
   registerUser(form: any, registerPayload: RegisterRequest): Observable<any> {

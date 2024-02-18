@@ -3,7 +3,7 @@
     {{ 'PAGES.LOGIN.TITLE' | translate }}
   </h1>
 
-  <form (submit)="userLogin()" #form="ngForm">
+  <form (submit)="userLogin()" #form="ngForm" (change)="authFailed=null">
     <div class="mb-3">
       <label for="email" class="form-label">{{ 'GENERAL.EMAIL' | translate }}</label>
       <input type="email"
@@ -25,6 +25,9 @@
       >
     </div>
 
+    <div class="alert alert-danger" *ngIf="authFailed">
+      {{ 'PAGES.LOGIN.FAILED' | translate }}
+    </div>
     <a routerLink="/register" class="btn btn-secondary">
       {{ 'PAGES.LOGIN.CREATE_ACCOUNT' | translate }}
     </a>

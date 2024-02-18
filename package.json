@@ -44,7 +44,9 @@
     "e2e": "npm run build:prod && playwright test -c e2e/playwright.config.ts e2e/",
     "e2e:show-trace": "playwright show-trace e2e/tracing/trace.zip",
     "version": "conventional-changelog -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "dependencies": {
     "@angular/animations": "17.2.1",
@@ -109,9 +111,10 @@
   "engines": {
     "node": ">= 16.14.0 || >= 18.10.0"
   },
-  "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
+  "build": {
+    "appId": "body.metrics",
+    "mac": {
+      "category": "body.metrics"
+    }
   }
 }
