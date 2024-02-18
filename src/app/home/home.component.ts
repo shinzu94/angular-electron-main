@@ -1,10 +1,9 @@
-import {Component, Inject, inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { AuthService } from "../shared/services/auth.service";
 import {ApiService} from '../http/api.service';
 import {UserModel} from '../model/user.model';
 import {Gender, Gender2LabelMapping} from '../register/gender.model';
 import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
-import {translate} from '@angular/localize/tools';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +32,4 @@ export class HomeComponent implements OnInit {
   genderLabel(label: Gender): string {
     return Gender2LabelMapping[label];
   }
-
-  protected readonly translate = translate;
 }

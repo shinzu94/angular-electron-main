@@ -1,8 +1,8 @@
 {
   "name": "body-metric",
-  "description": "Angular Electron sample",
+  "description": "Body metric",
   "author": {
-    "name": "Oskar Sęk",
+    "name": "Oskar Sęk & Dawud Samsonik",
     "email": "oskar.sek94@gmail.com"
   },
   "version": "1.0.0",

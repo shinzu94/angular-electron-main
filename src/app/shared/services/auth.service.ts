@@ -69,16 +69,5 @@ export class AuthService {
   logout(): void {
     localStorage.clear();
     window.location.reload();
-    // this.authService.logout().subscribe({
-    //   next: res => {
-    //     console.log(res);
-    //     this.storageService.clean();
-    //
-    //     window.location.reload();
-    //   },
-    //   error: err => {
-    //     console.log(err);
-    //   }
-    // });
   }
 }
