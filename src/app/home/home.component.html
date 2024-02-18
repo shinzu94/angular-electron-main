@@ -6,27 +6,27 @@
   <form *ngIf="loaded">
     <div>
       <label>{{ 'PAGES.HOME.FIRSTNAME' | translate }}</label>
-      <input type="text" value="{{user?.username}}" readonly>
+      <input type="text" value="{{user?.firstname}}" readonly class="form-control">
     </div>
     <div>
       <label>{{ 'PAGES.HOME.LASTNAME' | translate }}</label>
-      <input type="text" value="{{user?.lastname}}" readonly>
+      <input type="text" value="{{user?.lastname}}" readonly class="form-control">
     </div>
     <div>
       <label>{{ 'PAGES.HOME.USERNAME' | translate }}</label>
-      <input type="text" value="{{user?.username}}" readonly>
+      <input type="text" value="{{user?.username}}" readonly class="form-control">
     </div>
     <div>
       <label>{{ 'PAGES.HOME.EMAIL' | translate }}</label>
-      <input type="text" value="{{user?.email}}" readonly>
+      <input type="text" value="{{user?.email}}" readonly class="form-control">
     </div>
     <div>
       <label>{{ 'PAGES.HOME.GENDER' | translate }}</label>
-      <input type="text" value="{{genderLabel(user?.gender) || translate}}" readonly>
+      <input type="text" value="{{translatedGender}}" readonly class="form-control">
     </div>
     <div>
       <label>{{ 'PAGES.HOME.BIRTHDATE' | translate }}</label>
-      <input type="date" value="{{user?.birthDate}}" readonly>
+      <input type="date" value="{{user?.birthDate}}" readonly class="form-control">
     </div>
   </form>
   <div class="spinner" *ngIf="!loaded">
